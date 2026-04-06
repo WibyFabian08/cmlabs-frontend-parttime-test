@@ -4,12 +4,16 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+  className: {
+    type: String,
+    default: "h-28 rounded-lg",
+  },
 });
 </script>
 
 <template>
   <div
-    class="lg:px-44 md:px-28 sm:px-14 px-10 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5"
+    class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5"
   >
     <RouterLink
       v-for="(food, index) in data"
@@ -17,7 +21,8 @@ const props = defineProps({
       :to="`/food/${food?.strIngredient}`"
     >
       <div
-        class="bg p-2 rounded-lg h-28 overflow-hidden relative"
+        class="bg p-2 overflow-hidden relative"
+        :class="className"
         :style="`background-image: url(${food?.strThumb})`"
       >
         <div
