@@ -2,6 +2,9 @@
 import { onMounted, ref } from "vue";
 import api from "@/common/api";
 
+import FoodList from "@/components/FoodList.vue";
+import Hero from "@/components/Hero.vue";
+
 const listData = ref([]);
 
 onMounted(() => {
@@ -9,18 +12,19 @@ onMounted(() => {
     listData.value = res.data?.meals;
   });
 
-  api.get("/filter.php?i=Salmon").then((res) => {
-    console.log(res);
-  });
+  // api.get("/filter.php?i=Salmon").then((res) => {
+  //   console.log(res);
+  // });
 
-  api.get(`/lookup.php?i=52959`).then((res) => {
-    console.log(res);
-  });
+  // api.get(`/lookup.php?i=52959`).then((res) => {
+  //   console.log(res);
+  // });
 });
 </script>
 
 <template>
-  <div v-for="(data, index) in listData" :key="index">
-    {{ data?.strIngredient }}
+  <div class="space-y-10">
+    <Hero />
+    <FoodList :data="listData" />
   </div>
 </template>

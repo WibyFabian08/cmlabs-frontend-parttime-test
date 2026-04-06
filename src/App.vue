@@ -7,9 +7,8 @@ import Hero from "@/components/Hero.vue";
 
 <template>
   <NavBar />
-  <Hero/>
 
-  <div class="px-10 pt-5">
+  <div class="pt-5">
     <RouterView />
   </div>
 </template>

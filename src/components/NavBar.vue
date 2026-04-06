@@ -8,12 +8,14 @@ const MENUS = ["Home", "Foods", "Ingredients", "Local Culinary"];
   >
     <h6 class="text-xl font-semibold">MealApp</h6>
 
-    <ul class="flex items-center gap-5">
-      <li v-for="menu in MENUS" :key="menu">
-        <RouterLink class="hover:underline text-sm font-normal">
-          {{ menu }}
-        </RouterLink>
-      </li>
-    </ul>
+    <div class="md:block hidden">
+      <ul class="flex items-center gap-5">
+        <li v-for="menu in MENUS" :key="menu">
+          <RouterLink class="hover:underline text-sm font-normal">
+            {{ menu }}
+          </RouterLink>
+        </li>
+      </ul>
+    </div>
   </nav>
 </template>
