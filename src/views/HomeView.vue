@@ -14,9 +14,23 @@ onMounted(() => {
 
       listData.value = res.data?.meals;
     });
+
+  axios
+    .get("https://www.themealdb.com/api/json/v1/1/filter.php?i=Salmon")
+    .then((res) => {
+      console.log(res);
+    });
+
+  axios
+    .get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=52959`)
+    .then((res) => {
+      console.log(res);
+    });
 });
 </script>
 
 <template>
-  <div v-for="(data, index) in listData" :key="index">{{ data?.strIngredient }}</div>
+  <div v-for="(data, index) in listData" :key="index">
+    {{ data?.strIngredient }}
+  </div>
 </template>
