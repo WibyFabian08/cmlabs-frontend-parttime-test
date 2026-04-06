@@ -3,7 +3,6 @@ import { onMounted, ref } from "vue";
 import api from "@/common/api";
 
 import Ingredients from "@/components/Ingredients.vue";
-import Hero from "@/components/Hero.vue";
 
 const listData = ref([]);
 
@@ -24,7 +23,6 @@ onMounted(() => {
 
 <template>
   <div class="space-y-10">
-    <Hero />
     <Ingredients :data="listData" />
   </div>
 </template>

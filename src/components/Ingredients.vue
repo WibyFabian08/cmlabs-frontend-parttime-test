@@ -9,7 +9,7 @@ const props = defineProps({
 
 <template>
   <div
-    class="md:px-36 px-2 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5"
+    class="lg:px-44 md:px-28 sm:px-14 px-10 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5"
   >
     <RouterLink
       v-for="(food, index) in data"
