@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="lg:px-44 md:px-28 sm:px-14 px-10">
+  <div class="lg:px-44 md:px-28 sm:px-14 px-10 pb-10">
     <slot />
   </div>
 </template>

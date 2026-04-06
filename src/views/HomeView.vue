@@ -10,7 +10,15 @@ const listData = ref([]);
 
 onMounted(() => {
   api.get("/list.php?i=list&limit=10&page=1").then((res) => {
-    listData.value = res.data?.meals;
+    listData.value = res.data?.meals || []
+    listData.value = listData.value.map((res) => {
+      return {
+        ...res,
+        id: res?.idIngredient,
+        name: res?.strIngredient,
+        image: res?.strThumb
+      }
+    })
   });
 
   // api.get("/filter.php?i=Salmon").then((res) => {
