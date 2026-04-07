@@ -42,6 +42,8 @@ onMounted(() => {
         :data="listData"
         :className="'h-44 rounded-xl'"
         :backgroundSize="'cover'"
+        :pathKey="'id'"
+        :path="'food/detail'"
       />
     </div>
   </LayoutContent>

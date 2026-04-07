@@ -11,7 +11,15 @@ const props = defineProps({
   backgroundSize: {
     type: String,
     default: 'contain'
-  }
+  },
+  pathKey: {
+    type: String,
+    default: 'name'
+  },
+  path: {
+    type: String,
+    default: 'name'
+  },
 });
 </script>
 
@@ -22,7 +30,7 @@ const props = defineProps({
     <RouterLink
       v-for="(food, index) in data"
       :key="index"
-      :to="`/food/${food?.name}`"
+      :to="`/${path}/${food?.[pathKey]}`"
     >
       <div
         class="bg p-2 overflow-hidden relative"
@@ -32,7 +40,7 @@ const props = defineProps({
         <div
           class="absolute inset-0 bg-black/40 flex items-center justify-center"
         >
-          <h6 class="text-white font-bold text-lg">
+          <h6 class="text-white font-bold text-lg text-center">
             {{ food?.name }}
           </h6>
         </div>
