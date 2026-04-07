@@ -6,7 +6,9 @@ const MENUS = ["Home", "Foods", "Ingredients", "Local Culinary"];
   <nav
     class="h-12 flex items-center px-10 justify-between border-b border-gray-200"
   >
-    <h6 class="text-xl font-semibold">MealApp</h6>
+    <RouterLink to="/">
+      <h6 class="text-xl font-semibold">MealApp</h6>
+    </RouterLink>
 
     <div class="md:block hidden">
       <ul class="flex items-center gap-5">

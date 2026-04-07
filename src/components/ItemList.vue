@@ -1,4 +1,7 @@
 <script setup>
+import Loading from "./Loading.vue";
+import RenderList from "./RenderList.vue";
+
 const props = defineProps({
   data: {
     type: Array,
@@ -10,15 +13,19 @@ const props = defineProps({
   },
   backgroundSize: {
     type: String,
-    default: 'contain'
+    default: "contain",
   },
   pathKey: {
     type: String,
-    default: 'name'
+    default: "name",
   },
   path: {
     type: String,
-    default: 'food'
+    default: "food",
+  },
+  loading: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>
@@ -27,25 +34,40 @@ const props = defineProps({
   <div
     class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5"
   >
-    <RouterLink
-      v-for="(food, index) in data"
-      :key="index"
-      :to="`/${path}/${food?.[pathKey]}`"
-    >
-      <div
-        class="bg p-2 overflow-hidden relative"
-        :class="className"
-        :style="`background-image: url(${food?.image}); background-size: ${backgroundSize};`"
-      >
-        <div
-          class="absolute inset-0 bg-black/40 flex items-center justify-center"
+    <RenderList :data="data" :loading="loading">
+      <template #content>
+        <RouterLink
+          v-for="(food, index) in data"
+          :key="index"
+          :to="`/${path}/${food?.[pathKey]}`"
         >
-          <h6 class="text-white font-bold text-lg text-center">
-            {{ food?.name }}
-          </h6>
+          <div
+            class="bg p-2 overflow-hidden relative"
+            :class="className"
+            :style="`background-image: url(${food?.image}); background-size: ${backgroundSize};`"
+          >
+            <div
+              class="absolute inset-0 bg-black/40 flex items-center justify-center"
+            >
+              <h6 class="text-white font-bold text-lg text-center">
+                {{ food?.name }}
+              </h6>
+            </div>
+          </div>
+        </RouterLink>
+      </template>
+
+      <template #loading>
+        <div
+          v-for="(_, index) in 15"
+          :key="index"
+          :class="className"
+          class="overflow-hidden"
+        >
+          <Loading :type="'default'" />
         </div>
-      </div>
-    </RouterLink>
+      </template>
+    </RenderList>
   </div>
 </template>
 
@@ -53,6 +75,5 @@ const props = defineProps({
 .bg {
   background-repeat: no-repeat;
   background-position: center;
-  
 }
 </style>
