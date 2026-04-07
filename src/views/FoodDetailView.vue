@@ -1,14 +1,23 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import { useRoute } from "vue-router";
 
 import api from "@/common/api";
 
-import ItemList from "@/components/ItemList.vue";
+import Breadcrumbs from "@/components/Breadcrumbs.vue";
 import LayoutContent from "@/components/LayoutContent.vue";
 
 const detailData = ref({});
 const route = useRoute();
+
+const items = computed(() => {
+  return [
+    { label: "Home", to: "/" },
+    { label: "Foods", to: `/food/${detailData?.value?.strCategory}` },
+    { label: detailData?.value?.strCategory },
+    { label: detailData?.value?.strMeal },
+  ];
+});
 
 function getIngredientsWithMeasure(meal) {
   const results = [];
@@ -52,7 +61,7 @@ onMounted(() => {
   //   });
   // });
 
-  api.get(`/lookup.php?i=52959`).then((res) => {
+  api.get(`/lookup.php?i=${route?.params?.id}`).then((res) => {
     const mealData = res?.data?.meals || [];
 
     if (mealData?.length > 0) {
@@ -65,6 +74,7 @@ onMounted(() => {
 <template>
   <LayoutContent>
     <div class="space-y-5">
+      <Breadcrumbs :breadcrumbs="items" />
       <h6 class="text-3xl">{{ detailData?.strMeal }}</h6>
       <hr class="text-gray-200" />
       <p class="text-sm text-red-500">{{ detailData?.strArea }}</p>

@@ -18,7 +18,7 @@ const props = defineProps({
   },
   path: {
     type: String,
-    default: 'name'
+    default: 'food'
   },
 });
 </script>
