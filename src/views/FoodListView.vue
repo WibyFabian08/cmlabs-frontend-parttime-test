@@ -30,25 +30,29 @@ const filteredList = computed(() => {
   );
 });
 
-onMounted(() => {
-  loading.value = true;
-  api
-    .get(`/filter.php?i=${route?.params?.name}`)
-    .then((res) => {
-      listData.value = res.data?.meals || [];
-      listData.value = listData.value.map((res) => {
-        return {
-          ...res,
-          id: res?.idMeal,
-          name: res?.strMeal,
-          image: res?.strMealThumb,
-        };
-      });
-    })
-    .catch((err) => {})
-    .finally(() => {
-      loading.value = false;
+async function getData() {
+  try {
+    loading.value = true;
+    const response = await api.get(`/filter.php?i=${route?.params?.name}`);
+
+    listData.value = response.data?.meals || [];
+    listData.value = listData.value.map((res) => {
+      return {
+        ...res,
+        id: res?.idMeal,
+        name: res?.strMeal,
+        image: res?.strMealThumb,
+      };
     });
+  } catch (error) {
+    listData.value = [];
+  } finally {
+    loading.value = false;
+  }
+}
+
+onMounted(() => {
+  getData();
 });
 </script>
 

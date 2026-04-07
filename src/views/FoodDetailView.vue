@@ -49,21 +49,25 @@ function getYoutubeEmbedUrl(url) {
   return `https://www.youtube.com/embed/${videoId}`;
 }
 
-onMounted(() => {
-  loading.value = true;
-  api
-    .get(`/lookup.php?i=${route?.params?.id}`)
-    .then((res) => {
-      const mealData = res?.data?.meals || [];
+async function getData() {
+  try {
+    loading.value = true;
+    const response = await api.get(`/lookup.php?i=${route?.params?.id}`);
 
-      if (mealData?.length > 0) {
-        detailData.value = mealData[0];
-      }
-    })
-    .catch((err) => {})
-    .finally(() => {
-      loading.value = false;
-    });
+    const mealData = response?.data?.meals || [];
+
+    if (mealData?.length > 0) {
+      detailData.value = mealData[0];
+    }
+  } catch (error) {
+    detailData.value = {};
+  } finally {
+    loading.value = false;
+  }
+}
+
+onMounted(() => {
+  getData();
 });
 </script>
 

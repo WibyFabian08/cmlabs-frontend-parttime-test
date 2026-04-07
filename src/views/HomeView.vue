@@ -20,25 +20,29 @@ const filteredList = computed(() => {
   );
 });
 
-onMounted(() => {
-  loading.value = true;
-  api
-    .get("/list.php?i=list&limit=10&page=1")
-    .then((res) => {
-      listData.value = res.data?.meals || [];
-      listData.value = listData.value.map((res) => {
-        return {
-          ...res,
-          id: res?.idIngredient,
-          name: res?.strIngredient,
-          image: res?.strThumb,
-        };
-      });
-    })
-    .catch((err) => {})
-    .finally(() => {
-      loading.value = false;
+async function getData() {
+  try {
+    loading.value = true;
+    const response = await api.get("/list.php?i=list&limit=10&page=1");
+
+    listData.value = response.data?.meals || [];
+    listData.value = listData.value.map((res) => {
+      return {
+        ...res,
+        id: res?.idIngredient,
+        name: res?.strIngredient,
+        image: res?.strThumb,
+      };
     });
+  } catch (error) {
+    listData.value = [];
+  } finally {
+    loading.value = false;
+  }
+}
+
+onMounted(() => {
+  getData();
 });
 </script>
 
