@@ -27,10 +27,6 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  queryParams: {
-    type: String,
-    default: null
-  }
 });
 </script>
 
@@ -43,7 +39,7 @@ const props = defineProps({
         <RouterLink
           v-for="(food, index) in data"
           :key="index"
-          :to="`/${path}/${food?.[pathKey]}${queryParams || ''}`"
+          :to="`/${path}/${food?.[pathKey]}`"
         >
           <div
             class="bg p-2 overflow-hidden relative"

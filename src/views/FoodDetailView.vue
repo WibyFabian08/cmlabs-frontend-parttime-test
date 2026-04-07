@@ -18,8 +18,8 @@ const router = useRouter();
 const items = computed(() => {
   return [
     { label: "Home", to: "/" },
-    { label: "Foods", to: `/food/${route?.query?.q}` },
-    { label: route?.query?.q },
+    { label: "Foods", isBack: true },
+    { label: detailData?.value?.strCategory },
     { label: detailData?.value?.strMeal },
   ];
 });

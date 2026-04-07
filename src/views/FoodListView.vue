@@ -74,7 +74,6 @@ onMounted(() => {
         :backgroundSize="'cover'"
         :pathKey="'id'"
         :path="'food/detail'"
-        :queryParams="`?q=${route?.params?.name}`"
         :loading="loading"
       />
     </div>

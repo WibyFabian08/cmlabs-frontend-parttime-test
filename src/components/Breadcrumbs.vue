@@ -1,10 +1,14 @@
 <script setup>
+import { useRouter } from "vue-router";
+
 defineProps({
   breadcrumbs: {
     type: Array,
     default: () => [],
   },
 });
+
+const router = useRouter();
 </script>
 
 <template>
@@ -25,6 +29,17 @@ defineProps({
         >
           {{ item.label }}
         </router-link>
+
+        <span
+          v-else-if="item.isBack && index !== breadcrumbs.length - 1"
+          :class="{
+            'text-gray-400 font-normal': index === breadcrumbs.length - 1,
+          }"
+          class="text-black font-medium cursor-pointer"
+          @click="router.back()"
+        >
+          {{ item.label }}
+        </span>
 
         <span
           v-else
