@@ -37,9 +37,5 @@ npm run dev
 npm run build
 ```
 
-<!-- 
-
-LINK NETLIFY
-
+### Netlify Link
 https://cmlabs-frontend-parttime-test-wiby.netlify.app/
- -->
