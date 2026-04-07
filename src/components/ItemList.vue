@@ -31,11 +31,11 @@ const props = defineProps({
 </script>
 
 <template>
-  <div
-    class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5"
-  >
-    <RenderList :data="data" :loading="loading">
-      <template #content>
+  <RenderList :data="data" :loading="loading">
+    <template #content>
+      <div
+        class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5"
+      >
         <RouterLink
           v-for="(food, index) in data"
           :key="index"
@@ -55,9 +55,13 @@ const props = defineProps({
             </div>
           </div>
         </RouterLink>
-      </template>
+      </div>
+    </template>
 
-      <template #loading>
+    <template #loading>
+      <div
+        class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5"
+      >
         <div
           v-for="(_, index) in 15"
           :key="index"
@@ -66,9 +70,9 @@ const props = defineProps({
         >
           <Loading :type="'default'" />
         </div>
-      </template>
-    </RenderList>
-  </div>
+      </div>
+    </template>
+  </RenderList>
 </template>
 
 <style>
