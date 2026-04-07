@@ -58,7 +58,7 @@ onMounted(() => {
             :placeholder="'Cari disini...'"
           />
         </div>
-        <ItemList :data="filteredList" :loading="loading" />
+        <ItemList :data="filteredList" :loading="loading" :query-params="null"/>
       </div>
     </LayoutContent>
   </div>
